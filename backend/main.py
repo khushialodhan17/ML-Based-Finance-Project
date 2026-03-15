@@ -1,29 +1,25 @@
 from fastapi import FastAPI
-from schemas.budget_schema import BudgetRequest, BudgetResponse
+from fastapi.middleware.cors import CORSMiddleware
+
+from schemas.budget_schema import BudgetRequest
+from services.budget_engine import generate_budget_logic
 
 app = FastAPI()
 
+# Allow frontend (React) to talk to backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # allow all for now
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/")
-def read_root():
-    return {"message": "Backend running successfully"}
+def home():
+    return {"message": "Backend is working perfectly 🚀"}
 
-@app.post("/generate-budget", response_model=BudgetResponse)
+@app.post("/generate-budget")
 def generate_budget(data: BudgetRequest):
-    income = data.salary - (data.rent + data.emi + data.bills)
-
-    if data.savings_priority == "high":
-        savings = income * 0.4
-    elif data.savings_priority == "medium":
-        savings = income * 0.3
-    else:
-        savings = income * 0.2
-
-    remaining = income - savings
-
-    return {
-        "food": round(remaining * 0.35),
-        "shopping": round(remaining * 0.25),
-        "entertainment": round(remaining * 0.15),
-        "transport": round(remaining * 0.15),
-        "misc": round(remaining * 0.10),
-    }
+    result = generate_budget_logic(data)
+    return result
