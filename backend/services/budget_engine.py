@@ -14,12 +14,23 @@ def generate_budget_logic(data):
     else:
         savings = remaining * 0.2
 
-    expenses = remaining - savings
+    # expenses = remaining - savings
+
+    emergency_fund = savings * 0.3
+
+    final_savings = savings - emergency_fund
+
+    # return {
+    #     "savings": round(savings, 2),
+    #     "expenses": round(expenses, 2),
+    #     "rent": rent,
+    #     "emi": emi,
+    #     "bills": bills
+    # }
 
     return {
-        "savings": round(savings, 2),
-        "expenses": round(expenses, 2),
-        "rent": rent,
-        "emi": emi,
-        "bills": bills
-    }
+    "needs": rent + emi + bills,
+    "savings": final_savings,
+    "surplus_money": remaining - savings,
+    "emergency_fund": emergency_fund
+}
