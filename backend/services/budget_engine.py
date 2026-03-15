@@ -28,6 +28,7 @@ def generate_budget_logic(data):
     #     "bills": bills
     # }
 
+
     return {
     "needs": rent + emi + bills,
     "savings": final_savings,

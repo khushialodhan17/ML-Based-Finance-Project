@@ -21,8 +21,8 @@ const BudgetResult: React.FC<Props> = ({ budget }) => {
             <td>₹ {budget.needs}</td>
           </tr>
           <tr>
-            <td>Wants</td>
-            <td>₹ {budget.wants}</td>
+            <td>Surplus Money</td>
+            <td>₹ {budget.surplus_money}</td>
           </tr>
           <tr>
             <td>Savings</td>
