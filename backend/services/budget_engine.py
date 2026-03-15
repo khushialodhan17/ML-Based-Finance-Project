@@ -16,6 +16,7 @@ def generate_budget_logic(data):
 
     expenses = remaining - savings
 
+
     return {
         "savings": round(savings, 2),
         "expenses": round(expenses, 2),

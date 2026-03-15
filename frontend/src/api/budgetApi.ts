@@ -8,7 +8,7 @@ export interface BudgetFormData {
 
 export interface BudgetResultType {
   needs: number;
-  wants: number;
+  surplus_money: number;
   savings: number;
   emergency_fund: number;
 }
