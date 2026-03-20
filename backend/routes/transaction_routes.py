@@ -6,7 +6,9 @@ router = APIRouter()
 @router.post("/upload-transactions")
 async def upload_transactions(file: UploadFile = File(...)):
     try:
-        transactions = process_transactions(file.file)
+        # transactions = process_transactions(file.file)
+
+        transactions = process_transactions(file.file, file.filename)
 
         return {
             "count": len(transactions),
