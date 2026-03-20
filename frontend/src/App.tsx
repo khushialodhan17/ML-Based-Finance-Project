@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UploadTransactions from "./components/UploadTransactions";
 import BudgetForm from "./components/BudgetForm";
 import BudgetResult from "./components/BudgetResult";
 import {
@@ -9,6 +10,8 @@ import type {
   BudgetFormData,
   BudgetResultType,
 } from "./api/budgetApi";
+
+
 
 const App: React.FC = () => {
   const [budgetResult, setBudgetResult] = useState<BudgetResultType | null>(
@@ -40,6 +43,8 @@ const App: React.FC = () => {
       {loading && <p>Generating budget...</p>}
       {error && <p className="error">{error}</p>}
       {budgetResult && <BudgetResult budget={budgetResult} />}
+
+      <UploadTransactions />
     </div>
   );
 };
