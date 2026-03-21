@@ -27,6 +27,7 @@ const [data, setData] = useState<{
     formData.append("file", file);
 
     try {
+      // api key
       const res = await fetch("http://127.0.0.1:8000/upload-transactions", {
         method: "POST",
         body: formData,
